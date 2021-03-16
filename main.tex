@@ -1,0 +1,121 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[UKenglish]{babel}
+\usepackage{mathtools,amssymb,amsthm}
+\usepackage{adjustbox,graphicx}
+\usepackage{hyperref}
+\usepackage{lineno}
+\include{linenopatch}
+\linenumbers % comment out this line if you want to hide the line numbers
+
+\newtheorem{prop}{Proposition} % This defines a theorem-like environment. See https://www.overleaf.com/learn/latex/theorems_and_proofs
+\newtheorem{lem}[prop]{Lemma}
+\newtheorem{thm}[prop]{Theorem}
+\newtheorem{cor}[prop]{Corollary}
+\theoremstyle{definition}
+\newtheorem{defn}[prop]{Definition}
+\newtheorem{ex}[prop]{Example}
+% ========= Bibliography =========
+% These lines load the `biblatex' package
+% and read in the list of references from
+% References.bib - take a look.
+%
+% To generate References.bib, I recommend https://www.mybib.com/
+% rather than trying to write the .bib file yourself.
+%
+\usepackage{csquotes,biblatex}
+\addbibresource{References.bib}
+% ================================
+
+\title{The Cross Ratio}
+\author{Theodora Richards, s1723589}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+The cross ratio gives us a way of identifying mapping between points in the complex plane via a Möbius transformation. It is invariant of projective transformations and the Möbius transformations preserve it.
+The cross ratio is defined to be the image of $z_4$ that maps three distinct points, $(z_1, z_2, z_3)$, in the extended complex plane to the three distinct values $1, 0, \infty$ by a Möbius transformation. These three initial points always uniquely define a circle or a line. \\
+We have previously been studying Möbius transformations, which preserve the cross ratio. 
+The cross ratio is shown by:
+$$ [z_1, z_2, z_3, z_4] = \frac{z_1 - z_3}{z_1 - z_4}\frac{z_2 - z_4}{z_2 - z_3}$$
+
+We can permute four points among themselves in $4!$ ways (24) but we actually only get exactly 6 different results. \\
+\subsection{Real and Uniqueness}
+The cross ratio is real if and only if all the points $(z_1, z_2, z_3, z_4)$ lie on a single circle or Euclidean line. \\
+From our lecture notes we get a theorem for the unique Möbius transformation. {\autocite{bickerton_2021_honours}}
+\begin{thm}{\autocite{bickerton_2021_honours}}
+Let $z_1, z_2, z_3, z_4 \in \Tilde{\mathbb{C}}$ be three distinct points. Then there exists a unique Möbius transformation $f$ such that
+$$ f(z_2) = 1, f(z_3) = 0, \text{and} f(z_4) = \infty. $$
+\end{thm}
+This theorem shows us that any circle or line can be mapped to the real line.
+The proof of this theorem can be found in Section 2.5 of the lecture notes.{\autocite{bickerton_2021_honours}} \\
+\subsection{Cross ratio and Circles}
+Also, in Chapter 13 in Bob Connelly's notes on \textit{``Classic Geometries''}, he gives a very good explanation of how the cross ratio works in conjunction with circles along with a physical representation of what the cross ratio shows us, as shown in Figure 3 where $\theta_1$ and $\theta_3$ are found from the polar decomposition of the complex number $z = re^{i\theta}$, where the magnitude of $z$ is shown by $r = |z|$, and the line through $0$ and $z$ from the real axis gives an angle of $\theta$. This can be seen in Figure 1 below.
+\begin{figure}[h]
+    \adjincludegraphics[width=0.55\textwidth,center]{cross_ratio1.png} % This uses the adjustbox package to centre the image - the code is slightly neater than the alternatives
+    \caption{Figure denoting $(r, z, \theta)$ and the real axis in the complex plane.}
+    \label{fig:cross_ratio1}
+\end{figure}
+If we have the complex numbers $z_1, z_2, z_4$, the polar decomposition of the ratio for the angle $\theta_1$ can be written and thought of as the angle between two vectors $z_2-z_1$ and $z_4-z_1$. This is represented in Figure 2.
+\begin{figure}[h]
+    \adjincludegraphics[width=0.55\textwidth,center]{cross_ratio2.png} % This uses the adjustbox package to centre the image - the code is slightly neater than the alternatives
+    \caption{Figure denoting $(z_1, z_2, z_4)$ and $\theta_1$ in the complex plane.}
+    \label{fig:cross_ratio2}
+\end{figure}
+Finally, we get to our cross ratio $r$ of $z_1, z_2, z_3, z_4$ where $\theta_3$ is the angle at $z_3$ in the quadrilateral determined by these four points. 
+\begin{align}
+    \phantom{r = (\frac{z_1-z_2}{z_1-z_4})(\frac{z_3-z_4}{z_3-z_2})}
+    &\begin{aligned}
+        \mathllap{} &= |\frac{z_1-z_2}{z_1-z_4}|e^{i\theta_1}|\frac{z_3-z_4}{z_3-z_2}|e^{i\theta_3}\\
+            &\qquad = |\frac{z_1-z_2}{z_1-z_4}||\frac{z_3-z_4}{z_3-z_2}|e^{i(\theta_1+\theta_3)}
+    \end{aligned}
+\end{align}
+Figure 3 represents all of this and what the cross ratio represents.
+\begin{figure}[h]
+    \adjincludegraphics[width=0.55\textwidth,center]{cross_ratio3.png} % This uses the adjustbox package to centre the image - the code is slightly neater than the alternatives
+    \caption{Figure denoting $(z_1, z_2, z_3, z_4)$ in the complex plane.}
+    \label{fig:cross_ratio3}
+\end{figure}
+More detail on this can be found in Chapter 13 of Connelly's notes. {\autocite{Connelly_2017_Math}}\\
+\subsection{Mapping}
+\begin{ex}
+To find a map with Möbius transformations from $(1, i, -1, -i)$ to $(i, -1, -i, 1)$ we put these both into our formula for the cross ratio. If they are equal it means a map exists.
+$$ (1, i, -1, -i) = \frac{i + i}{i + 1}\frac{1 + 1}{1 + i} = \frac{4i}{2i} = 2 $$
+$$ (i, -1, -i, 1) = \frac{-1-1}{-1+i}\frac{i+i}{i-1} = \frac{-4i}{-2i} = 2. $$
+Therefore, we can see these cross ratios are equal which means we can map $(1, i, -1, -i)$ to $(i, -1, -i, 1)$ with a Möbius transformation (rotation). 
+\end{ex}
+We also get from Bak and Newmans book \textit{``Complex Analysis''} another theorem stating the uniqueness of the bilinear transformation $w$.{\autocite{Bak_Newman_2010_Complex}}
+\begin{thm}
+The unique bilinear transformation $w = f(z)$ mapping $z_1, z_2, z_3$ to $w_1, w_2, w_3$ is given by:
+$$ \frac{(w-w_2)(w_3-w_1)}{(w-w_1)(w_3-w_2)} = \frac{(z-z_2)(z_3-z_1)}{(z-z_1)(z_3-z_2)}. $$
+\end{thm}{\autocite{Bak_Newman_2010_Complex}}
+Using this new theorem we can show its use with an example.
+\begin{ex}
+Let $z_1 = 1, z_2 = 2, z_3 = 7$ and let $w_1 = 1, w_2 = 2, w_3 = 3$. Putting these all into our formula, we then solve for $w$ to get:
+$$ \frac{(w-2)(3-1)}{(w-1)(3-2)} = \frac{(z-2)(7-1)}{(z-1)(7-2)} $$
+$$ w = \frac{7z-4}{2z+1}$${\autocite{Bak_Newman_2010_Complex}}
+\end{ex}
+
+%Example 
+%$$ (0, 1, i its , -1) = \frac{(0 - i)(1 - (-1))}{(1-i)(-1-0)}$$
+
+%\begin{lem}[{\autocite[Lemma 3.1.2]{bickerton_2021_honours}}]\label{lem:egRes}
+%Example result.
+%\end{lem}
+%\begin{proof}
+%Example proof of Lemma~\ref{lem:egRes}.
+%\end{proof}
+
+%A reference to a reputable website~\autocite{weisstein_matchstick}. The bib entry was generated automatically using %\url{https://www.mybib.com/}
+
+%An example of a figure is shown in Figure~\ref{fig:knot}.
+%\begin{figure}
+%    \adjincludegraphics[width=0.25\textwidth,center]{figures/knot.pdf} % This uses the adjustbox package to centre the image - the code is slightly neater than the alternatives
+%    \caption{The unofficial logo of the School of Mathematics}
+%    \label{fig:knot}
+%\end{figure}
+
+\printbibliography % This command prints the cited references.
+\end{document}
